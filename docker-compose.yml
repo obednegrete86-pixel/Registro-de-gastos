@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: registro_dev
+      POSTGRES_DB: registro_gastos
+    ports:
+      - "5432:5432"
+    volumes:
+      - rg_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d registro_gastos"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  rg_pgdata:

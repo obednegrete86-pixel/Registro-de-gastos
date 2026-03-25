@@ -1,0 +1,175 @@
+:root {
+  /* Estilo claro tipo iOS (SF / sistema) */
+  --bg: #f2f2f7;
+  --surface: #ffffff;
+  --accent: #007aff;
+  --accent-pressed: #0062cc;
+  --text: #1c1c1e;
+  --muted: #8e8e93;
+  --border: #c6c6c8;
+  --border-subtle: #e5e5ea;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --input-bg: #f2f2f7;
+  --chart-grid: #e5e5ea;
+  --chart-axis: #8e8e93;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+textarea {
+  min-height: 4rem;
+  resize: vertical;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.1rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn:active:not(:disabled) {
+  background: var(--accent-pressed);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: var(--input-bg);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:active:not(:disabled) {
+  background: var(--border-subtle);
+}
+
+.field {
+  margin-bottom: 0.9rem;
+}
+
+.error {
+  color: #ff3b30;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.layout {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.5rem;
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+}
+
+h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.25rem;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.pwa-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.65rem;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.65rem 0.65rem 0.65rem 0.85rem;
+  border-radius: 0 10px 10px 0;
+}
+
+.charts {
+  margin-top: 1.25rem;
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+}

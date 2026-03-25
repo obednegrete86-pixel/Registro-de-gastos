@@ -1,0 +1,32 @@
+# Blueprint de Render: Web + PostgreSQL en un solo despliegue.
+# En el panel: New → Blueprint → conecta este repo (o pega el YAML).
+# Tras el primer deploy, revisa que FRONTEND_URL coincida con la URL pública del Web Service.
+
+databases:
+  - name: registro-gastos-db
+    databaseName: registro_gastos
+    user: registro_user
+    plan: free
+
+services:
+  - type: web
+    name: registro-gastos
+    runtime: node
+    plan: free
+    buildCommand: npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend
+    startCommand: node backend/src/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: registro-gastos-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: AUTH_OBED_PASSWORD
+        sync: false
+      - key: AUTH_LUPITA_PASSWORD
+        sync: false
+      # Opcional: si quieres forzar otra URL para CORS. Si no, el backend usa RENDER_EXTERNAL_URL.

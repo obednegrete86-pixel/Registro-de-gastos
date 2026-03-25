@@ -1,0 +1,16 @@
+{
+  "name": "registro-de-gastos",
+  "private": true,
+  "description": "Monorepo: backend + frontend. Usa los scripts de aquí si estás en la raíz del proyecto.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "check-db": "npm --prefix backend run check-db",
+    "init-db": "npm --prefix backend run init-db",
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "node backend/src/index.js"
+  }
+}
