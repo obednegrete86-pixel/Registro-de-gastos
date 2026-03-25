@@ -102,8 +102,8 @@ El **frontend compilado** se sirve desde el mismo servidor Node que la API (mism
 1. **New → PostgreSQL** (plan *free* u otro) y espera a que esté disponible.
 2. **New → Web Service**, conecta el mismo repo.
 3. Configuración sugerida:
-   - **Build command:** `npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend`
-   - **Start command:** `node backend/src/index.js`
+   - **Build command:** `npm install --prefix backend && npm install --prefix frontend --include=dev && npm run build --prefix frontend`
+   - **Start command:** `npm start --prefix backend`
 4. **Variables de entorno:**
    - `NODE_ENV` = `production`
    - `DATABASE_URL` = *Internal Database URL* del Postgres (en el menú de la base)
