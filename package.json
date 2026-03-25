@@ -11,6 +11,6 @@
     "check-db": "npm --prefix backend run check-db",
     "init-db": "npm --prefix backend run init-db",
     "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "node backend/src/index.js"
+    "start": "npm start --prefix backend"
   }
 }

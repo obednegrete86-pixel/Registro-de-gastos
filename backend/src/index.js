@@ -81,11 +81,32 @@ async function ensureSchema() {
   await pool.query(sql);
 }
 
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+/** PostgreSQL en Render a veces tarda unos segundos en aceptar conexiones al crear el blueprint. */
+async function ensureSchemaWithRetries(maxAttempts = 8, delayMs = 3000) {
+  let lastErr;
+  for (let i = 1; i <= maxAttempts; i++) {
+    try {
+      await ensureSchema();
+      if (i > 1) console.log(`Base de datos lista (intento ${i}).`);
+      return;
+    } catch (e) {
+      lastErr = e;
+      console.error(`Intento ${i}/${maxAttempts} conectar/esquema:`, e.message || e);
+      if (i < maxAttempts) await sleep(delayMs);
+    }
+  }
+  throw lastErr;
+}
+
 async function start() {
   try {
-    await ensureSchema();
-    app.listen(PORT, () => {
-      console.log(`API en http://localhost:${PORT}`);
+    await ensureSchemaWithRetries();
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Escuchando en puerto ${PORT}`);
     });
   } catch (e) {
     console.error("No se pudo iniciar:", e);
